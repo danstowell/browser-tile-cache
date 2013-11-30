@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="jquery.hotkeys.js"></script>
+
+<link rel="stylesheet" href="leaflet-derived/leaflet.css" />
+ <!--[if lte IE 8]>
+     <link rel="stylesheet" href="leaflet-derived/leaflet.ie.css" />
+ <![endif]-->
+<script src="leaflet-derived/leaflet-src.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#clearcacheclick").click(function() { clearTileCache(); return false; });
+	indexedtile_onready = function(){
+		var map = L.map('map').setView([51.505, -0.09], 13);
+		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+			maxZoom: 19
+		}).addTo(map);
+	}
+}); // end onload
+</script>
+
+<title>Slippy tiles</title>
+<script type="text/javascript" src="indexedtile.js"></script>
+<style type="text/css">
+body { text-align: center; }
+img, div {margin: 0px; padding: 0px;}
+#map { height: 400px; width: 80%; margin-left: 10%; }
+</style>
+</head>
+	<body>
+		<h1>Slippy tiles</h1>
+		<p>is it live or is it IndexedDB?</p>
+
+ <div id="map"></div>
+
+	<p><a href="#" id="clearcacheclick">Clear tile cache</a></p>
+
+	</body>
+</html>
+
