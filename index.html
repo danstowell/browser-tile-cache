@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="jquery.hotkeys.js"></script>
+<title>Four tiles</title>
+<script type="text/javascript" src="indexedtile.js"></script>
+<style type="text/css">
+body { text-align: center; }
+img, div {margin: 0px; padding: 0px;}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#clearcacheclick").click(function() { clearTileCache(); return false; });
+	var letsDoThings = function(){
+		var remote0 = "http://a.tile.openstreetmap.org/11/1004/637.png";
+		var remote1 = "http://a.tile.openstreetmap.org/11/1005/637.png";
+		var remote2 = "http://a.tile.openstreetmap.org/11/1004/638.png";
+		var remote3 = "http://a.tile.openstreetmap.org/11/1005/638.png";
+		loadTileToElement(remote0, document.getElementById("atile0"));
+		loadTileToElement(remote1, document.getElementById("atile1"));
+		loadTileToElement(remote2, document.getElementById("atile2"));
+		loadTileToElement(remote3, document.getElementById("atile3"));
+	}
+	// TODO How do we wait properly for the db to be loaded?
+	window.setTimeout(letsDoThings, 1000);
+}); // end onload
+</script>
+
+</head>
+	<body>
+		<h1>Four tiles</h1>
+
+		<p>The London tiles are served statically by this website.
+		Then, we will use the cached-or-live tile requester to replace them with Edinburgh tiles.</p>
+
+<div><img src="images/511/339.png" id="atile0" /><img src="images/512/339.png" id="atile1" /></div>
+<div><img src="images/511/340.png" id="atile2" /><img src="images/512/340.png" id="atile3" /></div>
+
+	<p><a href="#" id="clearcacheclick">Clear tile cache</a></p>
+
+	</body>
+</html>
+
