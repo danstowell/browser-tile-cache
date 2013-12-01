@@ -34,6 +34,7 @@ $(document).ready(function() {
 				   (userlon-0.15), (userlat-0.075), (userlon+0.15), (userlat+0.075)
 				).transform(fromProjection,toProjection));
 			});
+			return false;
 		};
 		$("#geolocmebutton").click(geolocme);
 	}else{
