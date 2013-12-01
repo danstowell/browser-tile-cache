@@ -44,10 +44,18 @@ loadTileToElement = function (tileurl, element, preferredorder) {
 			});
 			break;
 		case "cacheonly":
-			alert("todo");
+			loadTileToElement_CacheOnly(tileurl, element, function(event){
+				alert("Failed to load tile from cache (in cacheonly mode)")
+			});
 			break;
 		case "liveonly":
-			alert("todo");
+			loadImageToDb_liveOnly(tileurl, function(blob) {
+				loadTileToElement_CacheOnly(tileurl, element, function(event){
+					alert("Failed to load tile from cached-remote (in liveonly mode)")
+				});
+			}, function() {
+				alert("Failed to load tile from remote (in liveonly mode)")
+			});
 			break;
 	}
 
