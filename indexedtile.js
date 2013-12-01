@@ -16,6 +16,14 @@ indexedtile_onready = function() {},
 
 // THE MAIN FUNCTION FOR A USER TO CALL
 loadTileToElement = function (tileurl, element, preferredorder) {
+
+	if(!indexedDB){
+		// For browsers that don't support indexedDB cacheing
+		console.log("No indexedDB detected. Simple fallthrough live tile loading");
+		element.src = tileurl;
+		return;
+	}
+
 	if(!preferredorder){
 		preferredorder = "cachefirst"; // --- cachefirst, livefirst, liveonly, cacheonly
 	}
