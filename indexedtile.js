@@ -125,8 +125,10 @@ request.onupgradeneeded = function (event) {
 },
 
 clearTileCache = function(){
-	var transaction = db.transaction(["tiles"], "readwrite");
-	transaction.objectStore("tiles").delete(IDBKeyRange.lowerBound(""));
+	if(confirm("Clear all map tiles from offline cache?")){
+		var transaction = db.transaction(["tiles"], "readwrite");
+		transaction.objectStore("tiles").delete(IDBKeyRange.lowerBound(""));
+	};
 };
 
 // end of indexeddb interface
