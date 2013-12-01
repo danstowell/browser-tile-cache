@@ -20,7 +20,26 @@ $(document).ready(function() {
 			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
 			maxZoom: 19
 		}).addTo(map);
+	};
+
+	if(navigator.geolocation){
+		var geolocme = function(){
+			navigator.geolocation.getCurrentPosition( function (userloc) {
+				userlon = userloc.coords.longitude;
+				userlat = userloc.coords.latitude;
+				//alert("" + userlon + ", " + userlat);
+				var fromProjection = new OpenLayers.Projection("EPSG:4326"); // transform from WGS 1984
+				var toProjection = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+				L.map('map').zoomToExtent(new OpenLayers.Bounds(
+				   (userlon-0.15), (userlat-0.075), (userlon+0.15), (userlat+0.075)
+				).transform(fromProjection,toProjection));
+			});
+		};
+		$("#geolocmebutton").click(geolocme);
+	}else{
+		$("#geolocmebutton").style.display = "none";
 	}
+
 }); // end onload
 </script>
 
@@ -30,6 +49,7 @@ $(document).ready(function() {
 body { text-align: center; }
 img, div {margin: 0px; padding: 0px;}
 #map { height: 400px; width: 80%; margin-left: 10%; }
+.lowerbutton { margin: 1ex; padding: 1ex; }
 </style>
 </head>
 	<body>
@@ -38,7 +58,8 @@ img, div {margin: 0px; padding: 0px;}
 
  <div id="map"></div>
 
-	<p><a href="#" id="clearcacheclick">Clear tile cache</a></p>
+	<p class="lowerbutton"><a href="#" id="geolocmebutton">Geolocate me</a></p>
+	<p class="lowerbutton"><a href="#" id="clearcacheclick">Clear tile cache</a></p>
 
 	</body>
 </html>
