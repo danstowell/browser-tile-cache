@@ -44,30 +44,27 @@ $(document).ready(function() {
 }); // end onload
 </script>
 
-<title>Slippy tiles</title>
+<title>OpenStreetMap slippy tiles - viewable offline thanks to IndexedDB</title>
 <script type="text/javascript" src="indexedtile.js"></script>
 <style type="text/css">
-body, html { text-align: center; height: 100%}
+body, html { text-align: center; height: 100%; margin: 0px, padding: 0px;}
 img, div {margin: 0px; padding: 0px;}
-#map { height: 90%; width: 98%; margin: 0; }
+#map { height: 90%; width: 98%; margin: 0; padding: 0px;}
 h1 {margin: 1px; font-size: 100%;}
-ul.lowerbuttons li { display: inline-block; width: 45%; }
-ul.lowerbuttons li a { margin: 2px; width: 100%; display: inline-block;}
-.extrabottom {height: 15ex;}
+ul.actionbuttons li { min-height: 3ex;}
+ul.actionbuttons li { display: inline-block; width: 45%; }
+ul.actionbuttons li a { margin: 2px; width: 100%; display: inline-block;}
 </style>
 </head>
 	<body>
-		<h1>OpenStreetMap slippy tiles - viewable offline thanks to IndexedDB</h1>
-
- <div id="map"></div>
-
-<ul class="lowerbuttons">
+		<!-- <h1>OpenStreetMap slippy tiles - viewable offline thanks to IndexedDB</h1> -->
+<ul class="actionbuttons">
 	<li><a href="#" id="geolocmebutton">Geolocate me</a></li>
 	<li><a href="#" id="clearcacheclick">Clear tile cache</a></li>
 </ul>
 
-<div class="extrabottom">
-</div.
+ <div id="map"></div>
+
 	</body>
 </html>
 
