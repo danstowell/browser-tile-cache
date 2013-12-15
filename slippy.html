@@ -47,20 +47,23 @@ $(document).ready(function() {
 <title>Slippy tiles</title>
 <script type="text/javascript" src="indexedtile.js"></script>
 <style type="text/css">
-body { text-align: center; }
+body, html { text-align: center; height: 100%}
 img, div {margin: 0px; padding: 0px;}
-#map { height: 400px; width: 98%; margin: 0; }
-.lowerbutton { margin: 1ex; padding: 1ex; }
+#map { height: 90%; width: 98%; margin: 0; }
+h1 {margin: 1px; font-size: 100%;}
+ul.lowerbuttons li { display: inline-block; width: 45%; }
+ul.lowerbuttons li a { margin: 2px; width: 100%; display: inline-block;}
 </style>
 </head>
 	<body>
-		<h1>Slippy tiles</h1>
-		<p>is it live or is it IndexedDB?</p>
+		<h1>OpenStreetMap slippy tiles - viewable offline thanks to IndexedDB</h1>
 
  <div id="map"></div>
 
-	<p class="lowerbutton"><a href="#" id="geolocmebutton">Geolocate me</a></p>
-	<p class="lowerbutton"><a href="#" id="clearcacheclick">Clear tile cache</a></p>
+<ul class="lowerbuttons">
+	<li><a href="#" id="geolocmebutton">Geolocate me</a></li>
+	<li><a href="#" id="clearcacheclick">Clear tile cache</a></li>
+</ul>
 
 	</body>
 </html>
