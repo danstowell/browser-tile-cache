@@ -11,59 +11,34 @@
  <![endif]-->
 <script src="leaflet-derived/leaflet-src.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#clearcacheclick").click(function() { clearTileCache(); return false; });
-	indexedtile_onready = function(){
-		var map = L.map('map').setView([51.505, -0.09], 13);
-		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-			maxZoom: 19
-		}).addTo(map);
-	};
-
-	if(navigator.geolocation){
-		var geolocme = function(){
-			navigator.geolocation.getCurrentPosition( function (userloc) {
-				userlon = userloc.coords.longitude;
-				userlat = userloc.coords.latitude;
-				//alert("" + userlon + ", " + userlat);
-				var fromProjection = new OpenLayers.Projection("EPSG:4326"); // transform from WGS 1984
-				var toProjection = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
-				L.map('map').zoomToExtent(new OpenLayers.Bounds(
-				   (userlon-0.15), (userlat-0.075), (userlon+0.15), (userlat+0.075)
-				).transform(fromProjection,toProjection));
-			});
-			return false;
-		};
-		$("#geolocmebutton").click(geolocme);
-	}else{
-		$("#geolocmebutton").style.display = "none";
-	}
-
-}); // end onload
-</script>
+<script src="slippy.js"></script>
 
 <title>OpenStreetMap slippy tiles - viewable offline thanks to IndexedDB</title>
 <script type="text/javascript" src="indexedtile.js"></script>
 <style type="text/css">
-body, html { text-align: center; height: 100%; margin: 0px, padding: 0px;}
+body, html { text-align: center; height: 100%; margin: 0px; padding: 0px;}
 img, div {margin: 0px; padding: 0px;}
 #map { height: 90%; width: 98%; margin: 0; padding: 0px;}
 h1 {margin: 1px; font-size: 100%;}
 ul.actionbuttons li { min-height: 3ex;}
-ul.actionbuttons li { display: inline-block; width: 45%; }
+ul.actionbuttons li { display: inline-block; width: 30%; }
 ul.actionbuttons li a { margin: 2px; width: 100%; display: inline-block;}
 </style>
 </head>
 	<body>
 		<!-- <h1>OpenStreetMap slippy tiles - viewable offline thanks to IndexedDB</h1> -->
-<ul class="actionbuttons">
-	<li><a href="#" id="geolocmebutton">Geolocate me</a></li>
-	<li><a href="#" id="clearcacheclick">Clear tile cache</a></li>
-</ul>
+		<form>
+		<ul class="actionbuttons">
+			<li><a href="#" id="geolocmebutton">Geolocate me</a></li>
+			<li><a href="#" id="clearcacheclick">Clear tile cache</a></li>
+			<li><select name="locmarkselector" id="locmarkselector">
+				<option value="0">Bookmarks</option>
+				<option value="-1">Bookmark current location</option>
+			</select></li>
+		</ul>
+		</form>
 
- <div id="map"></div>
+		 <div id="map"></div>
 
 	</body>
 </html>
