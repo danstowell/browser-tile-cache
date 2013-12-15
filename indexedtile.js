@@ -31,7 +31,7 @@ loadTileToElement = function (tileurl, element, preferredorder) {
 	switch(preferredorder){
 		case "cachefirst":
 			loadTileToElement_CacheOnly(tileurl, element, function(event){
-				console.log("cache miss 1");
+				//console.log("cache miss 1");
 				loadImageToDb_liveOnly(tileurl, function(blob) {
 					loadTileToElement_CacheOnly(tileurl, element, function(event){
 						alert("Failed to load tile from cache AND from remote")
@@ -45,7 +45,7 @@ loadTileToElement = function (tileurl, element, preferredorder) {
 					alert("Failed - loaded tile from live, BUT THEN failed to find it in cache")
 				});
 			}, function(){
-				console.log("live miss 1");
+				//console.log("live miss 1");
 				loadTileToElement_CacheOnly(tileurl, element, function(event){
 					alert("Failed to load tile from live AND from cache")
 				});
@@ -80,7 +80,7 @@ loadTileToElement_CacheOnly = function(tileurl, element, onfail) {
 		}else{
 			var URL = window.URL || window.webkitURL;         // Get window.URL object
 			var imgURL = URL.createObjectURL(imgFile);        // Create and revoke ObjectURL
-			console.log("Using cached obj: " + imgURL);
+			//console.log("Using cached obj: " + imgURL);
 			element.setAttribute("src", imgURL);
 			URL.revokeObjectURL(imgURL);
 		};
@@ -96,9 +96,9 @@ loadImageToDb_liveOnly = function (tileurl, doneaction, erroraction) {
 	xhr.responseType = "blob";
 	xhr.addEventListener("load", function () {
 		if (xhr.status === 200) {
-			console.log("Image successfully retrieved from live URL: " + tileurl);
+			//console.log("Image successfully retrieved from live URL: " + tileurl);
 			blob = xhr.response;
-			console.log("Blob:" + blob);
+			//console.log("Blob:" + blob);
 			putTileInDb(tileurl, blob);
 			doneaction(blob);
 		}else{
